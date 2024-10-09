@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/stylized-airplane-the-flying-circus-dior
 Title: Stylized Airplane - The Flying Circus Diorama
 */
 
-import React, { forwardRef } from "react";
+import React, { forwardRef, useImperativeHandle  } from "react";
 import { useGLTF, useAnimations } from '@react-three/drei'
 import src from '../assets/models/CartoonAirPlane.glb';
 
@@ -16,13 +16,16 @@ const CartoonAirPlane=forwardRef((props, ref)=> {
   const group = React.useRef()
   const { nodes, materials, animations } = useGLTF(src)
   const { actions } = useAnimations(animations, group)
+
+  useImperativeHandle(ref, () => group.current);
+  
   React.useEffect(() => {
     if (actions) {
       actions['Scene']?.play(); // Replace 'AnimationName' with the name of your specific animation
     }
   }, [actions]);
   return (
-    <group ref={ref} {...props} dispose={null}>
+    <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="e7a99e753bdb49aab33eae164057a44bfbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>

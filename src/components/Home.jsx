@@ -4,6 +4,7 @@ import { OrbitControls, Points, PointMaterial, Html } from "@react-three/drei";
 import Book from "./Book";
 import CartoonAirPlane from "./CartoonAirPlane";
 import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 
 // Starfield Component
 const StarField = () => {
@@ -25,24 +26,38 @@ const StarField = () => {
 
   return (
     <Points ref={pointsRef} positions={stars} stride={3}>
-      <PointMaterial size={0.02} sizeAttenuation depthWrite={false} color="black" />
+      <PointMaterial size={0.02} sizeAttenuation depthWrite={false} color="white" />
     </Points>
   );
 };
 
 // Scene Component (where we handle the camera and sections)
-const Scene = ({orbitControlsRef}) => {
+const Scene = ({ orbitControlsRef }) => {
   const airplaneRef = useRef();
   const { camera } = useThree();
   const [currentSection, setCurrentSection] = useState(""); // Track the current section
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const navigate = useNavigate();
 
+  const handleClick = (route) => {
+    navigate(route);
+  };
+
+  const scaleModel = () => {
+    let s1 = 0.07; let s2 = 0.07; let s3 = 0.07;
+    if (isMobile) {
+      s1 = 0.05, s2 = 0.05, s3 = 0.05;
+    }
+    return { s1, s2, s3 };
+  };
+  const { s1, s2, s3 } = scaleModel();
   // Section boundaries for different sections
   const sectionBoundaries = {
     intro: [0, Math.PI / 4],
     projects: [Math.PI / 4, Math.PI / 2],
-    experience: [5.5, 6],
+    experience: [2.1, 3.3],
     achievements: [4, 5],
-    contact: [Math.PI, (5 * Math.PI) / 4],
+    contact: [5.2, 5.9],
   };
 
   const normalizeAngle = (angle) => {
@@ -52,34 +67,35 @@ const Scene = ({orbitControlsRef}) => {
     }
     return normalizedAngle;
   };
+
+  const airplanePositions = {
+    Intro: [0, 0.8, 0],
+    Projects: [1.5, 2, -2],
+    Experience: [-1.5, 2, -2],
+    Achievements: [2, 0.5, 2],
+    Contact: [-2, 1.5, 2],
+  };
+
   useEffect(() => {
     // GSAP animation to rotate the airplane in circles
     if (airplaneRef.current) {
-      gsap.to(airplaneRef.current.rotation, {
-        y: Math.PI * 2,
-        duration: 10,  // Complete a full rotation every 10 seconds
-        repeat: -1,    // Repeat indefinitely
-        ease: "none",  // Smooth constant motion
-      });
+      const targetPosition = airplanePositions[currentSection] || [0, 1.5, 0];  // Default position if section is not found
 
       gsap.to(airplaneRef.current.position, {
-        x: (i) => Math.sin(i * Math.PI * 2) * 3, // Radius of the circular path
-        z: (i) => Math.cos(i * Math.PI * 2) * 3,
-        duration: 10,
-        repeat: -1,
-        ease: "none",
-        modifiers: {
-          x: (x, i) => Math.sin(i * Math.PI * 2) * 3, // Adjust position based on rotation
-          z: (z, i) => Math.cos(i * Math.PI * 2) * 3
-        },
+        x: targetPosition[0],
+        y: targetPosition[1],
+        z: targetPosition[2],
+        duration: 2, // Adjust the speed of the movement
+        ease: "power2.out", // Smooth easing for the movement
       });
     }
-  }, []);
+  }, [currentSection]);
 
   // UseFrame to update scene on each render
   useFrame(() => {
     if (orbitControlsRef.current) {
       const azimuthalAngle = normalizeAngle(orbitControlsRef.current.getAzimuthalAngle());
+      // console.log(azimuthalAngle);
 
       if (azimuthalAngle >= sectionBoundaries.intro[0] && azimuthalAngle < sectionBoundaries.intro[1]) {
         setCurrentSection("Intro");
@@ -92,50 +108,84 @@ const Scene = ({orbitControlsRef}) => {
       } else if (azimuthalAngle >= sectionBoundaries.contact[0] && azimuthalAngle < sectionBoundaries.contact[1]) {
         setCurrentSection("Contact");
       } else {
-        setCurrentSection("");
+        setCurrentSection("Drag");
       }
     }
   });
+  window.onload = function () {
+    const popup = document.querySelector('popup');
+    popup.classList.add('show');
+    setTimeout(() => {
+      popup.style.animation = 'slideOut 2s forwards';
+    }, 3000); // Display for 3 seconds before sliding out
+  };
+
 
   return (
     <>
       {/* Book Model */}
-      <Book position={[0, 0, 0]} scale={[0.07, 0.07, 0.07]} />
+      <Book position={[0, 0, 0]} scale={[s1, s2, s3]} />
 
       {/* Airplane Model, rotates around the book */}
-      <CartoonAirPlane ref={airplaneRef} position={[-2,2,10]} scale={[0.02, 0.02, 0.02]} rotation={[0, 3, 0]} />
-
+      <CartoonAirPlane ref={airplaneRef} position={[-4, 4, 1]} scale={[0.02, 0.02, 0.02]} rotation={[0, 3, 0]} />
       {/* Display sections as text based on camera rotation */}
       {currentSection === "Intro" && (
         <Html position={[0, 2, 0]} center>
-          <h1>Intro Section</h1>
-          <p>Welcome to my portfolio!</p>
+          <div className="container">
+            <p className="text">Hi, I'm <span className="bold">Amar Gaikwad </span> </p>
+            <p className="text mg-up-1rem">A Software Engineer who Believes in Interactive Web Designs</p>
+          </div>
         </Html>
       )}
       {currentSection === "Projects" && (
         <Html position={[0, 2, 0]} center>
-          <h1>Projects</h1>
-          <p>Check out my awesome projects!</p>
+          <div className="container">
+            <p className="text big-txt">Projects</p>
+            <p className="text mg-up-1rem">Check out my awesome projects!</p>
+            <div onClick={() => handleClick('projects')} className="btn">
+              Learn More
+            </div>
+          </div>
+          {/* <Panel header={"Projects"} text={"Check out my awesome projects!"} route={"projects"}/> */}
+
         </Html>
       )}
       {currentSection === "Experience" && (
         <Html position={[0, 2, 0]} center>
-          <h1>Experience</h1>
-          <p>Here's a summary of my experience.</p>
+          <div className="container">
+            <p className="text big-txt">Experience</p>
+            <p className="text mg-up-1rem">Here's a summary of my experience.</p>
+            <div onClick={() => handleClick('exp')} className="btn">
+              Learn More
+            </div>
+          </div>
         </Html>
       )}
       {currentSection === "Achievements" && (
         <Html position={[0, 2, 0]} center>
-          <h1>Achievements</h1>
-          <p>Look at my amazing achievements!</p>
+          <div className="container">
+            <p className="text big-txt">Achievements</p>
+            <p className="text mg-up-1rem">Look at my amazing achievements!</p>
+            <div onClick={() => handleClick('achievements')} className="btn">
+              Learn More
+            </div>
+          </div>
+
         </Html>
       )}
       {currentSection === "Contact" && (
         <Html position={[0, 2, 0]} center>
-          <h1>Contact</h1>
-          <p>Feel free to contact me at example@mail.com</p>
+          <div className="container">
+            <p className="text big-txt">Contact Me</p>
+            <p className="text mg-up-1rem">amar3152002@gmail.com</p>
+          </div>
+
         </Html>
       )}
+      
+
+
+
     </>
   );
 };
@@ -152,48 +202,67 @@ const Home = () => {
   const handlePointerUp = () => {
     setIsDragging(false);
   };
+  const [showPopup, setShowPopup] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPopup(false);
+    }, 7000); // Display for 10 seconds
+
+    return () => clearTimeout(timer); // Cleanup on component unmount
+  }, []);
+
   return (
     <>
-     <div
-      className={`canvas-container ${isDragging ? "grabbing" : "grab"}`}
-      onPointerDown={handlePointerDown}
-      onPointerUp={handlePointerUp}
-    >
-      <Canvas
-        
-        camera={{ position: [0, 2, 5], near: 0.1, far: 100000 }}
+      <div
+        className={`canvas-container ${isDragging ? "grabbing" : "grab"}`}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
       >
-        {/* Starfield Background */}
-        <StarField />
 
-        <Suspense fallback={<>Loading...</>}>
-          {/* Lighting Setup */}
-          <directionalLight
-            position={[5, 5, 5]}
-            intensity={1}
-            castShadow
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            shadow-camera-far={50}
-            shadow-camera-left={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={10}
-            shadow-camera-bottom={-10}
-          />
-          <ambientLight intensity={0.4} />
-          <pointLight position={[0, 5, 5]} intensity={150} distance={50} decay={2} castShadow />
-          <hemisphereLight skyColor={"#ffffff"} groundColor={"#444444"} intensity={0.6} position={[0, 50, 0]} />
 
-          {/* Main Scene */}
-          <Scene orbitControlsRef={orbitControlsRef}/>
-        </Suspense>
+        <Canvas
 
-        {/* Orbit Controls for user interaction */}
-        <OrbitControls ref={orbitControlsRef} enablePan={false} enableZoom={false} enableRotate={true} />
-      </Canvas>
+          camera={{ position: [0, 2, 5], near: 0.1, far: 100000 }}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+        >
+          {/* Starfield Background */}
+          <StarField />
+
+          <Suspense fallback={<>Loading...</>}>
+            {/* Lighting Setup */}
+            <directionalLight
+              position={[5, 5, 5]}
+              intensity={1}
+              castShadow
+              shadow-mapSize-width={1024}
+              shadow-mapSize-height={1024}
+              shadow-camera-far={50}
+              shadow-camera-left={-10}
+              shadow-camera-right={10}
+              shadow-camera-top={10}
+              shadow-camera-bottom={-10}
+            />
+            <ambientLight intensity={0.4} />
+            <pointLight position={[0, 5, 5]} intensity={150} distance={50} decay={2} castShadow />
+            <hemisphereLight skyColor={"#ffffff"} groundColor={"#444444"} intensity={0.6} position={[0, 50, 0]} />
+
+            {/* Main Scene */}
+            <Scene orbitControlsRef={orbitControlsRef} />
+          </Suspense>
+
+          {/* Orbit Controls for user interaction */}
+          <OrbitControls ref={orbitControlsRef} enablePan={false} enableZoom={false} enableRotate={true} />
+        </Canvas>
       </div>
+
+
+      {showPopup && (
+        <div className="popup">
+          <p>Drag to Right →</p>
+        </div>
+      )}
     </>
   );
 };
