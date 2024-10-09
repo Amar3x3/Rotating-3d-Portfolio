@@ -380,7 +380,7 @@ nav.open .links {
   padding: 15px 30px;
   border-radius: 10px;
   font-size: 18px;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 @media (max-width: 1048px){
