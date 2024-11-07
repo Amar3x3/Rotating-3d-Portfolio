@@ -20,8 +20,8 @@ canvas{
   min-height: 100vh;
   min-width: 100vw;
   background: black;
-  background: radial-gradient(circle, rgba(239,239,242,1) 2%, rgba(224,224,231,1) 33%, rgba(145,145,148,1) 74%, rgba(43,43,43,1) 100%); 
-  background: linear-gradient(to bottom, #3a5da3 0%, #638bc7 40%, #315a96 70%, #4c7cc4 100%);
+  background: radial-gradient(circle, rgba(239,239,242,1) 2%, rgba(224,224,231,1) 23%, rgba(145,145,148,1) 64%, rgba(43,43,43,1) 100%); 
+  /* background: linear-gradient(to bottom, #3a5da3 0%, #638bc7 40%, #315a96 70%, #4c7cc4 100%); */
 }
 .canvas-container {
   position: relative;
@@ -417,7 +417,7 @@ nav.open .links {
         height: 100vh;
         top: 0;
         right: 0;
-        background-color: rgba(235, 71, 71, 0.3);
+        background-color: rgba(5, 5, 5, 0.3);
         display: flex;
         align-items: center;
         justify-content: center;

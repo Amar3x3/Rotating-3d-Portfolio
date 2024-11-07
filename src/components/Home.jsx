@@ -26,7 +26,7 @@ const StarField = () => {
 
   return (
     <Points ref={pointsRef} positions={stars} stride={3}>
-      <PointMaterial size={0.02} sizeAttenuation depthWrite={false} color="white" />
+      <PointMaterial size={0.02} sizeAttenuation depthWrite={false} color="black" />
     </Points>
   );
 };
@@ -234,19 +234,13 @@ const Home = () => {
             {/* Lighting Setup */}
             <directionalLight
               position={[5, 5, 5]}
-              intensity={1}
+              intensity={4}
               castShadow
-              shadow-mapSize-width={1024}
-              shadow-mapSize-height={1024}
-              shadow-camera-far={50}
-              shadow-camera-left={-10}
-              shadow-camera-right={10}
-              shadow-camera-top={10}
-              shadow-camera-bottom={-10}
+              
             />
             <ambientLight intensity={0.4} />
-            <pointLight position={[0, 5, 5]} intensity={150} distance={50} decay={2} castShadow />
-            <hemisphereLight skyColor={"#ffffff"} groundColor={"#444444"} intensity={0.6} position={[0, 50, 0]} />
+            {/* <pointLight position={[0, 5, 5]} intensity={150} distance={50} decay={2} castShadow /> */}
+            <hemisphereLight skyColor={"#ffffff"} groundColor={"#444444"} intensity={0.4} position={[0, 50, 0]} />
 
             {/* Main Scene */}
             <Scene orbitControlsRef={orbitControlsRef} />
