@@ -16,6 +16,19 @@ const Projects = () => {
                     Over the years, I've had the privilege of working on many projects, but a few truly stand out as personal favorites. Each of these endeavors holds a special place in my heart. Many of them are open-source, and I invite you to dive into the code! If you find something that inspires you, I would love for you to share your thoughts and suggestions for improvement. Your contributions and insights are always welcome and appreciated!
                 </p>
                 <div className="cards">
+                <div className='card text'>
+                        <img src={comp} alt="" />
+                        <p className="card-title">Dynamic Rule Engine</p>
+                        <p className="card-text">
+                        Created an application using Abstract Syntax Trees (AST) for dynamic rule creation and evaluation.
+<br />Mimicked SQL compiler parsing and evaluation to dynamically process user-defined rules and custom data.
+
+                        </p>
+                       <div className="flex-2">
+                       <a href='https://ruleenginefrontend.netlify.app/' target="_blank" className="live-btn">live</a>
+                       <a href="https://github.com/Amar3x3/RuleEngineApp" className="live-btn git-btn">Git</a>
+                       </div>
+                    </div>
                     <div className='card text'>
                         <img src={comp} alt="" />
                         <p className="card-title">ChitranCode</p>

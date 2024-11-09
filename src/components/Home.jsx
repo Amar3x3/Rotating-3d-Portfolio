@@ -1,11 +1,11 @@
 import React, { Suspense, useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Points, PointMaterial, Html } from "@react-three/drei";
+import { OrbitControls, Points, PointMaterial, Html, Loader } from "@react-three/drei";
 import Book from "./Book";
 import CartoonAirPlane from "./CartoonAirPlane";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
-
+import Load from "./Loader";
 // Starfield Component
 const StarField = () => {
   const pointsRef = useRef();
@@ -117,7 +117,7 @@ const Scene = ({ orbitControlsRef }) => {
     popup.classList.add('show');
     setTimeout(() => {
       popup.style.animation = 'slideOut 2s forwards';
-    }, 3000); // Display for 3 seconds before sliding out
+    }, 5000); // Display for 3 seconds before sliding out
   };
 
 
@@ -192,9 +192,12 @@ const Scene = ({ orbitControlsRef }) => {
 
 // Home Component (Root of the 3D scene)
 const Home = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const orbitControlsRef = useRef();
   const [isDragging, setIsDragging] = useState(false); // Track if the user is dragging
-
+  const handleContinue = () => {
+    setIsLoaded(true); // Render the main content only after "Continue" is clicked
+  };
   const handlePointerDown = () => {
     setIsDragging(true);
   };
@@ -214,6 +217,7 @@ const Home = () => {
 
   return (
     <>
+   
       <div
         className={`canvas-container ${isDragging ? "grabbing" : "grab"}`}
         onPointerDown={handlePointerDown}
@@ -230,7 +234,7 @@ const Home = () => {
           {/* Starfield Background */}
           <StarField />
 
-          <Suspense fallback={<>Loading...</>}>
+          <Suspense fallback={<Load/>}>
             {/* Lighting Setup */}
             <directionalLight
               position={[5, 5, 5]}
@@ -250,13 +254,14 @@ const Home = () => {
           <OrbitControls ref={orbitControlsRef} enablePan={false} enableZoom={false} enableRotate={true} />
         </Canvas>
       </div>
-
+ 
 
       {showPopup && (
         <div className="popup">
           <p>Drag to Right →</p>
         </div>
       )}
+   
     </>
   );
 };
