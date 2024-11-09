@@ -373,8 +373,8 @@ nav.open .links {
 }
 .popup {
   position: fixed;
-  top: 50%;
-  right: 20%;
+  bottom: 20%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #333;
   color: white;

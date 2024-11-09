@@ -117,7 +117,7 @@ const Scene = ({ orbitControlsRef }) => {
     popup.classList.add('show');
     setTimeout(() => {
       popup.style.animation = 'slideOut 2s forwards';
-    }, 5000); // Display for 3 seconds before sliding out
+    }, 8000); // Display for 3 seconds before sliding out
   };
 
 
