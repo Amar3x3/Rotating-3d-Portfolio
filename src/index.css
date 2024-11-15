@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 :root{
     
     --dark-one:#333;
@@ -28,6 +29,7 @@ canvas{
   width: 100%;
   height: 100vh;
   cursor: grab; /* Initial cursor */
+  z-index: 0;
 }
 
 .canvas-container.grabbing {
@@ -107,7 +109,7 @@ nav{
     top: 0;
     /* border-bottom: 1px solid gray; */
     /* box-shadow: 0px 15px 10px -15px #111; */
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 .margin{
@@ -119,7 +121,7 @@ nav{
     z-index: 5;
     /* max-width: 92rem; */
     /*background-color: red;*/
-    padding: 0 4rem;
+    /* padding: 0 4rem; */
     /* margin: 0 5rem; */
     
 }
@@ -130,9 +132,15 @@ nav .nav_container{
     height: 5rem;
 }
 .logo{
-width: 200px;
+/* width: 200px; */
 display: flex;
 align-items: center;
+}
+.links{
+  padding:0.6rem 2.5rem;
+  background-color: white;
+  border-radius: 2rem;
+  margin-top: 1rem;
 }
 .links ul{
     display: flex;
@@ -140,7 +148,7 @@ align-items: center;
     align-items: center;
 }
 .links ul a{
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   font-weight:500;
   color: #f02a45;
@@ -179,7 +187,7 @@ align-items: center;
 .hamburger-menu {
   width: 2.7rem;
   height: 3rem;
-  z-index: 100;
+  z-index: 102;
   position: relative;
   display: none;
   align-items: center;
@@ -266,49 +274,61 @@ nav.open .links {
     background-color: var(--dark-one);
 }
 .overlay-projects{
-  background-color: #fac1bd;
+  background-color: #f06161;
 }
 .empty-cont{
   height: 4rem;
-  background-color: #fac1bd;
+  background-color: #f06161;
 }
 .projects{
   margin: 1% 10%;
 }
 .title-pro{
-  font-size:  71px;
-  color: rgb(61, 61, 61);
+  font-size:  51px;
+  color: white;
 }
 .text-pro{
   font-size: 21px;
-  color: rgb(58, 56, 56);
+  color: white;
 }
 .cards{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .card{
-  background-color: white;
-  padding:1rem 1.7rem;
-  width: 350px;
-  height: 400px;
+  padding: 0.6rem 0.7rem;
+  position: relative;
+  width: 370px;
+  height: 500px;
   margin: 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content:center ;
   cursor: pointer;
-  box-shadow: 20px 20px 30px rgb(228, 139, 139);
+  box-shadow: 0px 0px 110px rgb(235, 228, 228);
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0px 28px 10px rgba(46, 221, 23, 0.3);
 
 }
+.screen{
+  position: relative;
+  width: 350px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .card:hover{
   transform: translateY(-20px);
   transition: 0.3s ease;
 }
 .card img{
-  width: 4rem;
+  width: 250px;
+  object-fit: cover;
 }
 .card-title{
   font-size: 30px;
@@ -326,14 +346,14 @@ nav.open .links {
 }
 .live-btn{
   padding: 0.6rem 3.7rem;
-  background-color: #fac1bd;
-  color: black;
+  background-color: #1df13a;
+  color: rgb(204, 42, 42);
   margin-right: 3rem;
 }
 .git-btn{
   background-color: white;
-  color: #fac1bd;
-  border: 2.5px solid #fac1bd;
+  color: #f06161;
+  border: 2.5px solid #f06161;
   margin-right: 0;
   font-weight: bold;
 }
@@ -416,6 +436,54 @@ nav.open .links {
   border-radius: 10px;
   transition: width 0.5s ease-in-out;
 }
+.links video{
+  display: none;
+}
+
+
+
+
+
+.projects-wrapper {
+  position: relative;
+  width: 100vw;
+  min-height: 130vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+.digital-rain-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.projects-content {
+  position: absolute;
+  z-index: 2;
+  top: 4rem;
+  color: white;
+  padding: 20px;
+  margin: 0 auto;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.share-tech{
+  font-family: "Share Tech Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+.button-group{
+  margin-top: 2rem;
+}
+.empty-cont-transparent{
+  height: 15rem;
+  background-color: transparent;
+}
 
 @media (max-width: 1048px){
     .links a {
@@ -427,6 +495,35 @@ nav.open .links {
         font-size: 1rem;
         padding: 0.7rem 1.7rem;
         margin-left: 0.6rem;
+      }
+      .links video{
+        display: unset;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(10%);
+        inset: 0;
+      }
+      .links ul a {
+        color: white;
+        font-weight:90px;
+        z-index: 2;
+  white-space: nowrap;
+  color: #fff;
+
+      }
+      
+      .red-blur-overlay {
+        position: absolute;
+        top: -3%;
+        left: 3%;
+        width: 100%;
+        height: 110%;
+        background-color: rgba(201, 45, 45, 0.6); /* Red with 50% opacity */
+        filter: blur(10px); /* Adjust the blur intensity as needed */
+        pointer-events: none; /* Ensure the overlay doesn't block interactions */
       }
 }
 
@@ -447,18 +544,19 @@ nav.open .links {
     
       .links {
         position: fixed;
-        width: 60%;
+        width: 100%;
         height: 100vh;
         top: 0;
         right: 0;
-        background-color: rgba(5, 5, 5, 0.3);
+        background-color: rgba(5, 5, 5);
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         transform: translateX(100%);
         transition: 0.5s;
-        border-radius: 0 0 0 50%;
+        margin-top: unset;
+        z-index: 101;
        
       }
       .img-content{
@@ -482,7 +580,7 @@ nav.open .links {
         background-color: var(--light-one);
         color:#19223A;
         border-radius:2rem ;
-        font-size: 1rem;
+        font-size: 16px;
         padding: 0.7rem 1.5rem;
         margin-left: 1rem;
         
@@ -531,6 +629,7 @@ nav.open .links {
   }
   .links ul a{
     font-weight:400;
+    font-size: 16px;
   }
 
 
@@ -576,6 +675,12 @@ nav.open .links {
   .popup{
     font-size: 12px;
   }
+  .projects-content{
+    padding: unset;
+  }
+  .screen-content{
+    margin-bottom: 2rem;
+  }
   
 }
 
@@ -587,3 +692,12 @@ nav.open .links {
 
 
 
+
+
+/* Project section styling */
+
+
+
+
+
+/* Button group */

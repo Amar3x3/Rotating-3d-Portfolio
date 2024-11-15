@@ -1,23 +1,32 @@
-import React, { Component,useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import goku from '../assets/gokuClear.mp4';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const videoRef = useRef(null);
+
   const handleMenuToggle = () => {
     setIsMenuOpen(prevState => !prevState);
   };
 
-  const handleLinkClick = (link) => {
+  const handleLinkClick = () => {
     handleMenuToggle();
   };
-  const location = useLocation();
+
+  // Play video when the menu is opened
+  useEffect(() => {
+    if (isMenuOpen && videoRef.current) {
+      videoRef.current.play();
+    } else if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [isMenuOpen]);
 
   return (
     <>
-    {console.log(location)}
-    <nav className={`navbarr ${isMenuOpen ? 'open' : ''}`}>
-      <div className="">
+      <nav className={`navbarr ${isMenuOpen ? 'open' : ''}`}>
         <div className="nav_container">
           <div className="logo">
             {/* <img src={require('../images/logo.png')} className="logo" alt="" /> */}
@@ -26,26 +35,56 @@ const Navbar = () => {
             <div className="bar"></div>
           </div>
         </div>
-      </div>
-      <div className="links">
-        <ul>
-          <li className="nav_item">
-            <Link to="/" className={location.pathname === '/' ? 'active_nav' : ''} onClick={() => handleLinkClick('home')}>Home</Link>
-          </li>
-          <li className="nav_item">
-            <Link to="/projects" className={location.pathname === '/projects' ? 'active_nav' : ''} onClick={() => handleLinkClick('projects')}>Projects</Link>
-          </li>
-          <li className="nav_item">
-            <Link to="/exp" className={location.pathname === '/exp' ? 'active_nav' : ''} onClick={() => handleLinkClick('exp')}>experience </Link>
-          </li>
-          <li className="nav_item">
-            <Link to="/achievements" className={location.pathname === '/achievements' ? 'active_nav' : ''} onClick={() => handleLinkClick('achievements')}>achievements </Link>
-          </li>
-
-          
-        </ul>
-      </div>
-    </nav>
+        <div className={`links ${isMenuOpen ? 'show' : ''}`}>
+          <video
+            ref={videoRef}
+            src={goku}
+            loop
+            muted
+            playsInline
+            className="nav-video"
+          ></video>
+           <div className="red-blur-overlay"></div>
+          <ul>
+            <li className="nav_item share-tech">
+              <Link
+                to="/"
+                className={location.pathname === '/' ? 'active_nav' : ''}
+                onClick={handleLinkClick}
+              >
+                Home
+              </Link>
+            </li>
+            <li className="nav_item share-tech">
+              <Link
+                to="/projects"
+                className={location.pathname === '/projects' ? 'active_nav' : ''}
+                onClick={handleLinkClick}
+              >
+                Projects
+              </Link>
+            </li>
+            <li className="nav_item share-tech">
+              <Link
+                to="/exp"
+                className={location.pathname === '/exp' ? 'active_nav' : ''}
+                onClick={handleLinkClick}
+              >
+                Experience
+              </Link>
+            </li>
+            <li className="nav_item share-tech">
+              <Link
+                to="/achievements"
+                className={location.pathname === '/achievements' ? 'active_nav' : ''}
+                onClick={handleLinkClick}
+              >
+                Achievements
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </>
   );
 };

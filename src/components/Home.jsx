@@ -31,11 +31,10 @@ const StarField = () => {
   );
 };
 
-// Scene Component (where we handle the camera and sections)
 const Scene = ({ orbitControlsRef }) => {
   const airplaneRef = useRef();
   const { camera } = useThree();
-  const [currentSection, setCurrentSection] = useState(""); // Track the current section
+  const [currentSection, setCurrentSection] = useState(""); 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const navigate = useNavigate();
 
@@ -63,7 +62,7 @@ const Scene = ({ orbitControlsRef }) => {
   const normalizeAngle = (angle) => {
     let normalizedAngle = angle % (2 * Math.PI);
     if (normalizedAngle < 0) {
-      normalizedAngle += 2 * Math.PI; // Ensure the angle is positive
+      normalizedAngle += 2 * Math.PI; 
     }
     return normalizedAngle;
   };
@@ -91,7 +90,6 @@ const Scene = ({ orbitControlsRef }) => {
     }
   }, [currentSection]);
 
-  // UseFrame to update scene on each render
   useFrame(() => {
     if (orbitControlsRef.current) {
       const azimuthalAngle = normalizeAngle(orbitControlsRef.current.getAzimuthalAngle());
@@ -117,31 +115,31 @@ const Scene = ({ orbitControlsRef }) => {
     popup.classList.add('show');
     setTimeout(() => {
       popup.style.animation = 'slideOut 2s forwards';
-    }, 8000); // Display for 3 seconds before sliding out
+    }, 8000); 
   };
 
 
   return (
     <>
       {/* Book Model */}
-      <Book position={[0, 0, 0]} scale={[s1, s2, s3]} />
+      <Book position={[0, -0.4, 0]} scale={[s1, s2, s3]} />
 
       {/* Airplane Model, rotates around the book */}
-      <CartoonAirPlane ref={airplaneRef} position={[-4, 4, 1]} scale={[0.02, 0.02, 0.02]} rotation={[0, 3, 0]} />
+      <CartoonAirPlane ref={airplaneRef} position={[-4, 3.7, 1]} scale={[0.02, 0.02, 0.02]} rotation={[0, 3, 0]} />
       {/* Display sections as text based on camera rotation */}
       {currentSection === "Intro" && (
-        <Html position={[0, 2, 0]} center>
+        <Html position={[0, 1.9, 0]} center>
           <div className="container">
-            <p className="text">Hi, I'm <span className="bold">Amar Gaikwad </span> </p>
-            <p className="text mg-up-1rem">A Software Engineer who Believes in Interactive Web Designs</p>
+            <p className="text share-tech">Hi, I'm <span className="bold">Amar Gaikwad </span> </p>
+            <p className="text mg-up-1rem share-tech">A Software Engineer who Believes in Interactive Web Designs</p>
           </div>
         </Html>
       )}
       {currentSection === "Projects" && (
-        <Html position={[0, 2, 0]} center>
+        <Html position={[0, 1.7, 0]} center>
           <div className="container">
-            <p className="text big-txt">Projects</p>
-            <p className="text mg-up-1rem">Check out my awesome projects!</p>
+            <p className="text big-txt share-tech">Projects</p>
+            <p className="text mg-up-1rem share-tech" >Check out my awesome projects!</p>
             <div onClick={() => handleClick('projects')} className="btn">
               Learn More
             </div>
@@ -151,10 +149,10 @@ const Scene = ({ orbitControlsRef }) => {
         </Html>
       )}
       {currentSection === "Experience" && (
-        <Html position={[0, 2, 0]} center>
+        <Html position={[0, 1.7, 0]} center>
           <div className="container">
-            <p className="text big-txt">Experience</p>
-            <p className="text mg-up-1rem">Here's a summary of my experience.</p>
+            <p className="text big-txt share-tech">Experience</p>
+            <p className="text mg-up-1rem share-tech" share-tech>Here's a summary of my experience.</p>
             <div onClick={() => handleClick('exp')} className="btn">
               Learn More
             </div>
@@ -162,10 +160,10 @@ const Scene = ({ orbitControlsRef }) => {
         </Html>
       )}
       {currentSection === "Achievements" && (
-        <Html position={[0, 2, 0]} center>
+        <Html position={[0, 1.7, 0]} center>
           <div className="container">
-            <p className="text big-txt">Achievements</p>
-            <p className="text mg-up-1rem">Look at my amazing achievements!</p>
+            <p className="text big-txt share-tech">Achievements</p>
+            <p className="text mg-up-1rem share-tech">Look at my amazing achievements!</p>
             <div onClick={() => handleClick('achievements')} className="btn">
               Learn More
             </div>
@@ -174,10 +172,10 @@ const Scene = ({ orbitControlsRef }) => {
         </Html>
       )}
       {currentSection === "Contact" && (
-        <Html position={[0, 2, 0]} center>
+        <Html position={[0, 1.7, 0]} center>
           <div className="container">
-            <p className="text big-txt">Contact Me</p>
-            <p className="text mg-up-1rem">amar3152002@gmail.com</p>
+            <p className="text big-txt share-tech">Contact Me</p>
+            <p className="text mg-up-1rem share-tech">amar3152002@gmail.com</p>
           </div>
 
         </Html>

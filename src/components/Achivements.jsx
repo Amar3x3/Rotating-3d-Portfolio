@@ -8,7 +8,7 @@ const Achievements = () => {
     return <>
         <div className="achievements  overlay-projects">
             <div className="empty-cont"></div>
-            <div className="projects">
+            <div className="projects share-tech">
 
                 <h1 className="title-pro">Achievements</h1>
                 <p className="text-pro">A Showcase of significant accomplishments in competitive programming, professional development, and industry certifications, reflecting a journey of growth and excellence.</p>
