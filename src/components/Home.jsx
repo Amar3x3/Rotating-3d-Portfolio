@@ -115,7 +115,7 @@ const Scene = ({ orbitControlsRef }) => {
     popup.classList.add('show');
     setTimeout(() => {
       popup.style.animation = 'slideOut 2s forwards';
-    }, 8000); 
+    }, 17000); 
   };
 
 
