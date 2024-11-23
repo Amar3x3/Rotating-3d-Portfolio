@@ -10,16 +10,9 @@ const Loader = () => {
   useEffect(() => {
     let animationFrame;
     const animateProgress = () => {
-      if (!useRealProgress && displayProgress < 40) {
-        setDisplayProgress((prev) => Math.min(prev + 0.2, 40)); // Slow increment to 40%
-      } else if (useRealProgress) {
-        // Step 2: Switch to actual loading progress
-        const adjustedProgress = progress >= 90
-          ? 90 + (progress - 90) / 4 // Slow down between 90-100%
-          : progress;
-        setDisplayProgress(adjustedProgress);
+      if (useRealProgress) {
+        setDisplayProgress(progress);
       }
-      animationFrame = requestAnimationFrame(animateProgress);
     };
 
     animateProgress();
@@ -37,17 +30,32 @@ const Loader = () => {
   return (
     <Html center>
       <div className="loading-screen">
-        <div className="loader">
-          <p>Loading...</p>
-          <div className="progress-bar">
-            <div
-              className="progress"
-              style={{ width: `${displayProgress.toFixed(0)}%` }}
-            ></div>
+
+        <div class="loader">
+          <div class="box box-1">
+            <div class="side-left"></div>
+            <div class="side-right"></div>
+            <div class="side-top"></div>
           </div>
-          <p>{displayProgress.toFixed(0)}%</p>
+          <div class="box box-2">
+            <div class="side-left"></div>
+            <div class="side-right"></div>
+            <div class="side-top"></div>
+          </div>
+          <div class="box box-3">
+            <div class="side-left"></div>
+            <div class="side-right"></div>
+            <div class="side-top"></div>
+          </div>
+          <div class="box box-4">
+            <div class="side-left"></div>
+            <div class="side-right"></div>
+            <div class="side-top"></div>
+          </div>
         </div>
+        <h2>Loading</h2>
       </div>
+
     </Html>
   );
 };

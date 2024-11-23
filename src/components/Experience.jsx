@@ -14,7 +14,7 @@ const Experience = () => {
 
                     <div className="full-card">
                         <div className="flex-div">
-                            <img src={tcs} alt="" className="logo-exp" />
+                            <img src={tcs} preload="auto" alt="" className="logo-exp" />
                             <div className="line"></div>
                             <div>
                                 <p className="full-card-title share-tech">TCS</p>
@@ -33,7 +33,7 @@ const Experience = () => {
 
                     <div className="full-card">
                         <div className="flex-div">
-                            <img src={dce} alt="" className="dce logo-exp" />
+                            <img src={dce} preload="auto" alt="" className="dce logo-exp" />
                             <div className="line"></div>
                             <div>
                                 <p className="full-card-title share-tech">Dce Refrigeration PVT LTD</p>

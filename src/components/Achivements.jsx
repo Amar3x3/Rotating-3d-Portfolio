@@ -15,7 +15,7 @@ const Achievements = () => {
 
                 <div className="full-card">
                     <div className="flex-div">
-                        <img src={sih} alt="" className="logo-exp" />
+                        <img src={sih} preload="auto" alt="" className="logo-exp" />
                         <div className="line"></div>
                         <div>
                             <p className="full-card-title">Smart India Hackathon Winner</p>
@@ -32,7 +32,7 @@ const Achievements = () => {
 
                 <div className="full-card">
                     <div className="flex-div">
-                        <img src={moe} alt="" className="dce logo-exp" />
+                        <img src={moe} preload="auto" alt="" className="dce logo-exp" />
                         <div className="line"></div>
                         <div>
                             <p className="full-card-title">Innovation, Design and Entrepreneurship Bootcamp Finalists</p>
@@ -50,7 +50,7 @@ const Achievements = () => {
 
                 <div className="full-card">
                     <div className="flex-div">
-                        <img src={mit} alt="" className="dce logo-exp" />
+                        <img src={mit} alt="" preload="auto" className="dce logo-exp" />
                         <div className="line"></div>
                         <div>
                             <p className="full-card-title">Hack Metro MIT'23 Finalists</p>
@@ -69,7 +69,7 @@ const Achievements = () => {
 
                 <div className="full-card">
                     <div className="flex-div">
-                        <img src={leetcode} alt="" className="dce logo-exp" />
+                        <img src={leetcode} preload="auto" alt=""  className="dce logo-exp" />
                         <div className="line"></div>
                         <div>
                             <p className="full-card-title">Solved 400+ questions at Leetcode and Geeks for geeks</p>

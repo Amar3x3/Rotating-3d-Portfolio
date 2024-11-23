@@ -208,7 +208,7 @@ const Home = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPopup(false);
-    }, 7000); // Display for 10 seconds
+    }, 17000); // Display for 17 seconds
 
     return () => clearTimeout(timer); // Cleanup on component unmount
   }, []);
