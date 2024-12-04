@@ -7,11 +7,11 @@ import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 import Load from "./Loader";
 // Starfield Component
-const StarField = () => {
+export const StarField = () => {
   const pointsRef = useRef();
 
   const stars = React.useMemo(() => {
-    const starPositions = new Float32Array(3000 * 3);
+    const starPositions = new Float32Array(3000 * 4);
     for (let i = 0; i < starPositions.length; i++) {
       starPositions[i] = (Math.random() - 0.5) * 10;
     }
@@ -20,18 +20,18 @@ const StarField = () => {
 
   useFrame(() => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y += 0.0005;
+      pointsRef.current.rotation.x += 0.0005;
     }
   });
 
   return (
     <Points ref={pointsRef} positions={stars} stride={3}>
-      <PointMaterial size={0.02} sizeAttenuation depthWrite={false} color="black" />
+      <PointMaterial size={0.018} sizeAttenuation depthWrite={false} color="black" />
     </Points>
   );
 };
 
-const Scene = ({ orbitControlsRef }) => {
+ const Scene = ({ orbitControlsRef }) => {
   const airplaneRef = useRef();
   const { camera } = useThree();
   const [currentSection, setCurrentSection] = useState(""); 
@@ -244,7 +244,7 @@ const Home = () => {
             {/* <pointLight position={[0, 5, 5]} intensity={150} distance={50} decay={2} castShadow /> */}
             <hemisphereLight skyColor={"#ffffff"} groundColor={"#444444"} intensity={0.4} position={[0, 50, 0]} />
 
-            {/* Main Scene */}
+            
             <Scene orbitControlsRef={orbitControlsRef} />
           </Suspense>
 
