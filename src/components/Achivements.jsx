@@ -1,8 +1,5 @@
 import React from "react";
-import sih from '../assets/sih.jpeg';
-import moe from '../assets/moe.jpg';
-import mit from '../assets/mit.png';
-import leetcode from '../assets/leetcode.png'
+
 
 const Achievements = () => {
     return <>
@@ -15,7 +12,7 @@ const Achievements = () => {
 
                 <div className="full-card">
                     <div className="flex-div">
-                        <img src={sih} preload="auto" alt="" className="logo-exp" />
+                        <img src="https://res.cloudinary.com/dn07sxmaf/image/upload/v1733297732/3DPortfolio/sih_n26rwa.jpg" preload="auto" alt="" className="logo-exp" />
                         <div className="line"></div>
                         <div>
                             <p className="full-card-title">Smart India Hackathon Winner</p>
@@ -32,7 +29,7 @@ const Achievements = () => {
 
                 <div className="full-card">
                     <div className="flex-div">
-                        <img src={moe} preload="auto" alt="" className="dce logo-exp" />
+                        <img src="https://res.cloudinary.com/dn07sxmaf/image/upload/v1733297732/3DPortfolio/moe_tttjki.jpg" preload="auto" alt="" className="dce logo-exp" />
                         <div className="line"></div>
                         <div>
                             <p className="full-card-title">Innovation, Design and Entrepreneurship Bootcamp Finalists</p>
@@ -50,7 +47,7 @@ const Achievements = () => {
 
                 <div className="full-card">
                     <div className="flex-div">
-                        <img src={mit} alt="" preload="auto" className="dce logo-exp" />
+                        <img src="https://res.cloudinary.com/dn07sxmaf/image/upload/v1733297732/3DPortfolio/mit_cvkzlr.png" alt="" preload="auto" className="dce logo-exp" />
                         <div className="line"></div>
                         <div>
                             <p className="full-card-title">Hack Metro MIT'23 Finalists</p>
@@ -69,12 +66,12 @@ const Achievements = () => {
 
                 <div className="full-card">
                     <div className="flex-div">
-                        <img src={leetcode} preload="auto" alt=""  className="dce logo-exp" />
+                        <img src="https://res.cloudinary.com/dn07sxmaf/image/upload/v1733297722/3DPortfolio/leetcode_tgwhbs.png" preload="auto" alt=""  className="dce logo-exp" />
                         <div className="line"></div>
                         <div>
                             <p className="full-card-title">Solved 400+ questions at Leetcode and Geeks for geeks</p>
                             <p className="card-text">
-                            • Solved 400+ algorithmic challenges across topics like dynamic programming, graphs, trees, and tries. <br />
+                            • Solved 450+ algorithmic challenges across topics like dynamic programming, graphs, trees, and tries. <br />
                             •  Enhanced problem-solving skills in data structures and algorithms, improving efficiency and optimization techniques. <br />
                             •  Gained proficiency in diverse approaches, including backtracking, greedy algorithms, and advanced recursion.
                             </p>

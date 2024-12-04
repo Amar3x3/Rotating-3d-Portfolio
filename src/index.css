@@ -413,7 +413,7 @@ nav.open .links {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.7rem 0.9rem;
+  padding: 0.7rem 1.6rem;
   border-radius: 3rem;
   background-color:#f06161;
 }
@@ -506,6 +506,9 @@ nav.open .links {
 /* From Uiverse.io by csozidev */ 
 /* 3D tower loader made by: csozi | Website: www.csozi.hu*/
 .loading-screen{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: black;
   transform: translate(-30%, 50%);
 }

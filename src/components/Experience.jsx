@@ -1,6 +1,5 @@
 import React from 'react';
-import tcs from '../assets/tcs.png';
-import dce from '../assets/dce.png';
+
 
 const Experience = () => {
     return (
@@ -14,7 +13,7 @@ const Experience = () => {
 
                     <div className="full-card">
                         <div className="flex-div">
-                            <img src={tcs} preload="auto" alt="" className="logo-exp" />
+                            <img src="https://res.cloudinary.com/dn07sxmaf/image/upload/v1733297732/3DPortfolio/tcs_rartx3.png" preload="auto" alt="" className="logo-exp" />
                             <div className="line"></div>
                             <div>
                                 <p className="full-card-title share-tech">TCS</p>
@@ -33,7 +32,7 @@ const Experience = () => {
 
                     <div className="full-card">
                         <div className="flex-div">
-                            <img src={dce} preload="auto" alt="" className="dce logo-exp" />
+                            <img src="https://res.cloudinary.com/dn07sxmaf/image/upload/v1733297717/3DPortfolio/dce_rgqrwa.png" preload="auto" alt="" className="dce logo-exp" />
                             <div className="line"></div>
                             <div>
                                 <p className="full-card-title share-tech">Dce Refrigeration PVT LTD</p>

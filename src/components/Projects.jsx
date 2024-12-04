@@ -47,8 +47,8 @@ const Projects = () => {
 const projectsData = [
     {
         image: "https://res.cloudinary.com/dn07sxmaf/image/upload/v1731674569/3DPortfolio/terminal_mj4qmw.gif",
-        title: "Dynamic Rule Engine",
-        description: "Created an application using Abstract Syntax Trees (AST) which mimicks SQL compiler working for dynamic rule creation and evaluation.",
+        title: "Json Filter Engine",
+        description: "Created an application using Abstract Syntax Trees (AST) which mimicks SQL compiler working for filtering Json Objects.",
         live: "https://ruleenginefrontend.netlify.app/",
         git: "https://github.com/Amar3x3/RuleEngineApp"
     },
