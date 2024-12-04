@@ -392,16 +392,34 @@ nav.open .links {
   width: 12rem;
 }
 .popup {
+  /* background-image: url(./assets/drag_animation.svg);
+  background-repeat: no-repeat; */
   position: fixed;
-  bottom: 20%;
+  bottom: 6%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #333;
   color: white;
   padding: 15px 30px;
   border-radius: 10px;
   font-size: 18px;
   z-index: 1001;
+  pointer-events: none;
+  font-family: "Share Tech Mono", monospace;
+}
+.popup img{
+  width: 7rem;
+}
+.popup p{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0.9rem;
+  border-radius: 3rem;
+  background-color:#f06161;
+}
+.popup svg{
+  width: 1.5rem;
+  margin-left: 0.5rem;
 }
 
 

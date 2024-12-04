@@ -6,6 +6,9 @@ import CartoonAirPlane from "./CartoonAirPlane";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 import Load from "./Loader";
+import dragImg from '../assets/drag_animation.svg'
+
+
 // Starfield Component
 export const StarField = () => {
   const pointsRef = useRef();
@@ -31,10 +34,10 @@ export const StarField = () => {
   );
 };
 
- const Scene = ({ orbitControlsRef }) => {
+const Scene = ({ orbitControlsRef }) => {
   const airplaneRef = useRef();
   const { camera } = useThree();
-  const [currentSection, setCurrentSection] = useState(""); 
+  const [currentSection, setCurrentSection] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const navigate = useNavigate();
 
@@ -62,7 +65,7 @@ export const StarField = () => {
   const normalizeAngle = (angle) => {
     let normalizedAngle = angle % (2 * Math.PI);
     if (normalizedAngle < 0) {
-      normalizedAngle += 2 * Math.PI; 
+      normalizedAngle += 2 * Math.PI;
     }
     return normalizedAngle;
   };
@@ -115,7 +118,7 @@ export const StarField = () => {
     popup.classList.add('show');
     setTimeout(() => {
       popup.style.animation = 'slideOut 2s forwards';
-    }, 17000); 
+    }, 17000);
   };
 
 
@@ -180,7 +183,7 @@ export const StarField = () => {
 
         </Html>
       )}
-      
+
 
 
 
@@ -191,19 +194,31 @@ export const StarField = () => {
 // Home Component (Root of the 3D scene)
 const Home = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState(null);
+  const [dragThresholdMet, setDragThresholdMet] = useState(false); 
+  const [showPopup, setShowPopup] = useState(true);
+  const navigate = useNavigate();
   const orbitControlsRef = useRef();
-  const [isDragging, setIsDragging] = useState(false); // Track if the user is dragging
-  const handleContinue = () => {
-    setIsLoaded(true); // Render the main content only after "Continue" is clicked
-  };
-  const handlePointerDown = () => {
+
+  const handlePointerDown = (event) => {
     setIsDragging(true);
+    setDragStart(event.clientX); // Track drag start position
+  };
+
+  const handlePointerMove = (event) => {
+    if (isDragging && dragStart !== null) {
+      const dragDistance = event.clientX - dragStart;
+      if (dragDistance > 100) { 
+        setDragThresholdMet(true); // Disable animation after dragging threshold
+      }
+    }
   };
 
   const handlePointerUp = () => {
     setIsDragging(false);
+    setDragStart(null); 
   };
-  const [showPopup, setShowPopup] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -215,11 +230,12 @@ const Home = () => {
 
   return (
     <>
-   
+
       <div
         className={`canvas-container ${isDragging ? "grabbing" : "grab"}`}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
+        onPointerMove={handlePointerMove}
       >
 
 
@@ -232,34 +248,44 @@ const Home = () => {
           {/* Starfield Background */}
           <StarField />
 
-          <Suspense fallback={<Load/>}>
+          <Suspense fallback={<Load />}>
             {/* Lighting Setup */}
             <directionalLight
               position={[5, 5, 5]}
               intensity={4}
               castShadow
-              
+
             />
             <ambientLight intensity={0.4} />
             {/* <pointLight position={[0, 5, 5]} intensity={150} distance={50} decay={2} castShadow /> */}
             <hemisphereLight skyColor={"#ffffff"} groundColor={"#444444"} intensity={0.4} position={[0, 50, 0]} />
 
-            
+
             <Scene orbitControlsRef={orbitControlsRef} />
+
           </Suspense>
+
 
           {/* Orbit Controls for user interaction */}
           <OrbitControls ref={orbitControlsRef} enablePan={false} enableZoom={false} enableRotate={true} />
         </Canvas>
       </div>
- 
+
 
       {showPopup && (
-        <div className="popup">
-          <p>Drag to Right →</p>
+        <div>
+          <div className="popup">
+            <img src={dragImg} alt="" />
+          <p>Drag to Explore
+          <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+            </svg>
+          </p>
+          </div>
+          
         </div>
       )}
-   
+
     </>
   );
 };
