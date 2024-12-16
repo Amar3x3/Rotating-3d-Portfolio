@@ -43,7 +43,7 @@ export default class AWaves extends HTMLElement {
       window.addEventListener('resize', this.onResize.bind(this))
       
       window.addEventListener('mousemove', this.onMouseMove.bind(this))
-      this.addEventListener('touchmove', this.onTouchMove.bind(this))
+      window.addEventListener('touchmove', this.onTouchMove.bind(this))
     }
   
     /**

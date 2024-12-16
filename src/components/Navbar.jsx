@@ -69,15 +69,6 @@ const Navbar = () => {
             </li>
             <li className="nav_item share-tech">
               <Link
-                to="/exp"
-                className={location.pathname === '/exp' ? 'active_nav' : ''}
-                onClick={handleLinkClick}
-              >
-                Experience
-              </Link>
-            </li>
-            <li className="nav_item share-tech">
-              <Link
                 to="/achievements"
                 className={location.pathname === '/achievements' ? 'active_nav' : ''}
                 onClick={handleLinkClick}
@@ -85,6 +76,16 @@ const Navbar = () => {
                 Achievements
               </Link>
             </li>
+            <li className="nav_item share-tech">
+              <Link
+                to="/exp"
+                className={location.pathname === '/exp' ? 'active_nav' : ''}
+                onClick={handleLinkClick}
+              >
+                Experience
+              </Link>
+            </li>
+          
           </ul>
         </div>
       </nav>
