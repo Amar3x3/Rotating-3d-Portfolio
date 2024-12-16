@@ -1,15 +1,21 @@
+import { Line } from "@react-three/drei";
 import React from "react";
+import Lines from "./WavyLines/AWaves";
 
 
 const Achievements = () => {
     return <>
         <div className="achievements  overlay-projects">
+            <Lines/>
+            <div className="empty-cont"></div>
             <div className="empty-cont"></div>
             <div className="projects share-tech">
+           
 
                 <h1 className="title-pro">Achievements</h1>
+               
                 <p className="text-pro">A Showcase of significant accomplishments in competitive programming, professional development, and industry certifications, reflecting a journey of growth and excellence.</p>
-
+               
                 <div className="full-card">
                     <div className="flex-div">
                         <img src="https://res.cloudinary.com/dn07sxmaf/image/upload/v1733297732/3DPortfolio/sih_n26rwa.jpg" preload="auto" alt="" className="logo-exp" />

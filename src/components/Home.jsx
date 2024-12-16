@@ -267,7 +267,7 @@ const Home = () => {
 
 
           {/* Orbit Controls for user interaction */}
-          <OrbitControls ref={orbitControlsRef} enablePan={false} enableZoom={false} enableRotate={true} />
+          <OrbitControls ref={orbitControlsRef} enablePan={false} enableZoom={false} enableRotate={true} enableDamping={true} />
         </Canvas>
       </div>
 

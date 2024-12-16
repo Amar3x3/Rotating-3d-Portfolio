@@ -1,12 +1,18 @@
-import React from "react";
+
+import { useEffect } from "react";
 import DigitalRain from "./DigitalRain";
 
+
 const Projects = () => {
+
     return (
         <div className="projects-container">
+            
+
             {/* Digital Rain Background */}
 
             <DigitalRain />
+          
 
 
             {/* Projects Content */}

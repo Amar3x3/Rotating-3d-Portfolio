@@ -19,10 +19,14 @@ export default function DigitalRain() {
       // Adjust canvas size for high-DPI displays
       canvas.width = window.innerWidth * window.devicePixelRatio;
       canvas.height = window.innerHeight * window.devicePixelRatio;
-      // Scale the context to ensure the content is drawn correctly
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 
-      initializeRain();
+      
+  //     const contentHeight = document.querySelector(".projects-container")?.scrollHeight || window.innerHeight;
+  // canvas.width = window.innerWidth * window.devicePixelRatio;
+  // canvas.height = contentHeight * window.devicePixelRatio;
+  // ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  initializeRain();
     };
 
     // Initialize rain drops array
@@ -61,7 +65,7 @@ export default function DigitalRain() {
     resizeCanvas();
     const intervalId = setInterval(draw, 33);
 
-    window.addEventListener("resize", resizeCanvas);
+    // window.addEventListener("resize", resizeCanvas);
 
     // Cleanup function
     return () => {
@@ -72,7 +76,7 @@ export default function DigitalRain() {
 
   return (
     <div className="fixed inset-0 bg-black">
-      <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
+      <canvas ref={canvasRef} style={{ width: "100%", height: "100%" , minWidth:"100%"}} />
     </div>
   );
 }

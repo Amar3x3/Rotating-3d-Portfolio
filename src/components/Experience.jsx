@@ -1,4 +1,5 @@
 import React from 'react';
+import Lines from './WavyLines/AWaves';
 
 
 const Experience = () => {
@@ -6,11 +7,13 @@ const Experience = () => {
         <>
             <div className="experience overlay-projects">
                 <div className="empty-cont"></div>
+                <div className="empty-cont"></div>
+                <Lines/>
                 <div className="projects">
-
+                <div className="empty-cont"></div>
                     <h1 className="title-pro share-tech">Experience</h1>
                     <p className="text-pro share-tech">Till now I have worked through some Internships , here's some overview</p>
-
+                    
                     <div className="full-card">
                         <div className="flex-div">
                             <img src="https://res.cloudinary.com/dn07sxmaf/image/upload/v1733297732/3DPortfolio/tcs_rartx3.png" preload="auto" alt="" className="logo-exp" />
