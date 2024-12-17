@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import goku from '../assets/gokuClear.mp4';
-import gokuFallbackPoster from '../assets/gokuFallbackPoster.png'
+import Lines from './WavyLines/AWaves';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,17 +36,8 @@ const Navbar = () => {
           </div>
         </div>
         <div className={`links ${isMenuOpen ? 'show' : ''}`}>
-          <video
-            ref={videoRef}
-            src={goku}
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="nav-video"
-            poster={gokuFallbackPoster}
-          ></video>
-           <div className="red-blur-overlay"></div>
+         
+          
           <ul>
             <li className="nav_item share-tech">
               <Link
@@ -85,7 +75,7 @@ const Navbar = () => {
                 Experience
               </Link>
             </li>
-          
+
           </ul>
         </div>
       </nav>

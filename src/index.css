@@ -767,7 +767,7 @@ nav.open .links {
         margin-top: unset;
         z-index: 101;
         padding: 0;
-       
+       border-radius: unset;
       }
       .img-content{
         width: 12rem;
