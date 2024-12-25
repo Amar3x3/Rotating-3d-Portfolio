@@ -139,7 +139,7 @@ align-items: center;
 .links{
   padding:0.6rem 2.5rem;
   background-color: white;
-  border-radius: 2rem;
+  border-radius: 3rem;
   margin-top: 1rem;
 }
 .links ul{
@@ -792,7 +792,7 @@ nav.open .links {
         border-radius:2rem ;
         font-size: 16px;
         padding: 0.7rem 1.5rem;
-        margin-left: 1rem;
+        margin-left: unset;
         
     }
     .links a.active_nav:hover{

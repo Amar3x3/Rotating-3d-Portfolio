@@ -9,12 +9,12 @@ Title: Medieval Fantasy Book
 
 import React from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei';
-import src from '../assets/models/book.glb';
+// import src from '../assets/models/book.glb';
 
 
 const Book=(props)=> {
   const group = React.useRef()
-  const { nodes, materials, animations } = useGLTF(src)
+  const { nodes, materials, animations } = useGLTF("https://res.cloudinary.com/dn07sxmaf/image/upload/v1735133180/3DPortfolio/book_ltvkui.glb")
   const { actions } = useAnimations(animations, group);
   React.useEffect(() => {
     if (actions) {

@@ -9,12 +9,12 @@ Title: Stylized Airplane - The Flying Circus Diorama
 
 import React, { forwardRef, useImperativeHandle  } from "react";
 import { useGLTF, useAnimations } from '@react-three/drei'
-import src from '../assets/models/CartoonAirPlane.glb';
+// import src from '../assets/models/CartoonAirPlane.glb';
 
 
 const CartoonAirPlane=forwardRef((props, ref)=> {
   const group = React.useRef()
-  const { nodes, materials, animations } = useGLTF(src)
+  const { nodes, materials, animations } = useGLTF("https://res.cloudinary.com/dn07sxmaf/image/upload/v1735132394/3DPortfolio/CartoonAirPlane_bfi21x.glb")
   const { actions } = useAnimations(animations, group)
 
   useImperativeHandle(ref, () => group.current);
